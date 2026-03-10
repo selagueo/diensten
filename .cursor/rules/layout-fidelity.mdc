@@ -1,0 +1,9 @@
+---
+description: Layout and design fidelity constraints — prioritize accuracy, replicate don't redesign
+alwaysApply: true
+---
+
+# Layout & Design Fidelity
+
+- **Prioritize layout accuracy over design interpretation.** Match spacing, alignment, proportions, and structure exactly as specified or shown.
+- **Do not redesign — replicate.** Implement the given design as-is. Avoid "improving" or reinterpreting layouts unless explicitly asked.
