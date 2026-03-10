@@ -94,7 +94,7 @@ export function Header() {
                   : pathname === item.href;
               return (
                 <li key={item.href} className="flex items-center">
-                  <a
+                  <Link
                     href={item.href}
                     className="relative block pb-1.5 pt-1.5 text-xs font-bold uppercase tracking-widest text-black hover:text-black/80"
                   >
@@ -105,7 +105,7 @@ export function Header() {
                         aria-hidden
                       />
                     )}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -146,7 +146,7 @@ export function Header() {
                   : pathname === item.href;
               return (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className={`flex items-center gap-2 py-2 text-sm font-bold uppercase tracking-widest text-black ${
                       active ? "text-diensten-orange" : ""
@@ -160,7 +160,7 @@ export function Header() {
                       />
                     )}
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
