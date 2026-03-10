@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { OBRAS } from "@/lib/obras";
 
+export const dynamic = "force-static";
+
 const BASE_URL = "https://diensten.com.ar";
 
 export default function sitemap(): MetadataRoute.Sitemap {
