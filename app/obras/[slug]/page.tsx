@@ -5,6 +5,10 @@ import { Footer } from "@/components/sections/Footer";
 import { Container } from "@/components/Container";
 import { OBRAS } from "@/lib/obras";
 
+export function generateStaticParams() {
+  return OBRAS.map((obra) => ({ slug: obra.slug }));
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
