@@ -3,6 +3,7 @@ import Image from "@/components/Img";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Container } from "@/components/Container";
+import { BrandsCarousel } from "@/components/BrandsCarousel";
 
 export const metadata: Metadata = {
   title: "Clientes",
@@ -33,35 +34,14 @@ export default function ClientesPage() {
                 Clientes
               </h1>
               <p className="mt-6 text-lg text-white/90">
-                [Placeholder: Introducción o subtítulo de la página]
+                Empresas líderes que eligen a Diensten para desarrollar sus proyectos de arquitectura e ingeniería.
               </p>
             </div>
           </Container>
         </section>
 
-        {/* Section 1 - placeholder */}
-        <section className="py-20">
-          <Container>
-            <h2 className="text-2xl font-bold text-gray-900">
-              [Placeholder: Sección 1]
-            </h2>
-            <p className="mt-4 text-gray-600">
-              [Placeholder: Contenido de la primera sección]
-            </p>
-          </Container>
-        </section>
-
-        {/* Section 2 - placeholder */}
-        <section className="bg-gray-50 py-20">
-          <Container>
-            <h2 className="text-2xl font-bold text-gray-900">
-              [Placeholder: Sección 2]
-            </h2>
-            <p className="mt-4 text-gray-600">
-              [Placeholder: Contenido de la segunda sección]
-            </p>
-          </Container>
-        </section>
+        {/* Brands carousel */}
+        <BrandsCarousel />
       </main>
       <Footer />
     </>
