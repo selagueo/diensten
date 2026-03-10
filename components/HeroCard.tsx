@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/Img";
 import { useState, useEffect, useCallback, useRef } from "react";
 import type { HeroCardSlide } from "@/app/data/hero-card-slides";
 

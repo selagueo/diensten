@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Img";
 import Link from "next/link";
 import { Russo_One } from "next/font/google";
 import { Container } from "../Container";
@@ -191,12 +191,12 @@ export function Footer() {
           <p className="text-right text-sm text-gray-400 min-[1024px]:text-xs">
             © {new Date().getFullYear()} Diensten - Powered by{" "}
             <a
-              href="https://halfpipe.dev"
+              href="https://lajo.ar"
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-block text-[#51FF00] ${russoOne.className}`}
+              className={`inline-block text-[#FF8300] ${russoOne.className}`}
             >
-              halfpipe<span className="animate-blink">_</span>
+              lajo<span className="animate-blink">_</span>
             </a>
           </p>
         </div>

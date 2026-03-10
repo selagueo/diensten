@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Img";
 import { Container } from "../Container";
 import { HeroCard } from "../HeroCard";
 import { HERO_CARD_SLIDES } from "@/app/data/hero-card-slides";
