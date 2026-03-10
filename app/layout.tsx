@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const bp = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://diensten.com.ar"),
   title: {
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
-      { url: "/diensten-logo-simple.png", type: "image/png" },
+      { url: `${bp}/favicon.ico`, sizes: "32x32", type: "image/x-icon" },
+      { url: `${bp}/diensten-logo-simple.png`, type: "image/png" },
     ],
   },
   description:
