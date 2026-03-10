@@ -44,29 +44,44 @@ body {
   background: #ea580c;
 }
 
+@-webkit-keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
 .animate-blink {
-  animation: blink 1s step-end infinite;
+  -webkit-animation: blink 1s steps(1, end) infinite;
+  animation: blink 1s steps(1, end) infinite;
 }
 
+@-webkit-keyframes brands-scroll {
+  0%   { -webkit-transform: translate3d(0, 0, 0);      transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-50%, 0, 0);   transform: translate3d(-50%, 0, 0); }
+}
 @keyframes brands-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .brands-scroll {
+  -webkit-animation: brands-scroll 35s linear infinite;
   animation: brands-scroll 35s linear infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .brands-scroll {
+    -webkit-animation: none;
     animation: none;
   }
   .animate-blink {
+    -webkit-animation: none;
     animation: none;
   }
 }
