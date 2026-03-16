@@ -1,9 +1,6 @@
 import Image from "@/components/Img";
 import Link from "next/link";
-import { Russo_One } from "next/font/google";
 import { Container } from "../Container";
-
-const russoOne = Russo_One({ weight: "400", subsets: ["latin"] });
 
 const LEGAL_LINKS_LEFT = [
   { label: "Sede Central - Buenos Aires", address: "Av. Segurola 1502 CP 1407 CABA, Bs As, Argentina", href: "https://maps.app.goo.gl/FTZET2ND16uVfYG29", targetBlank: true, icon: "location" },
@@ -189,15 +186,7 @@ export function Footer() {
         {/* Copyright + Powered by halfpipe */}
         <div className="border-t border-gray-500/30 py-6">
           <p className="text-right text-sm text-gray-400 min-[1024px]:text-xs">
-            © {new Date().getFullYear()} Diensten - Powered by{" "}
-            <a
-              href="https://lajo.ar"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-block text-[#FF8300] ${russoOne.className}`}
-            >
-              lajo<span className="animate-blink">_</span>
-            </a>
+            © {new Date().getFullYear()} Diensten. Todos los derechos reservados.
           </p>
         </div>
       </Container>
