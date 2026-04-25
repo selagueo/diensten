@@ -276,10 +276,11 @@ export default function LaEmpresaPage() {
                 />
               </div>
 
-              {/* Valores: 3 chips */}
+              {/* Valores: 3-column grid with italic names, divider lines, hover accent */}
               <div className="mt-4 sm:mt-6">
-                <div className="rounded-2xl border border-gray-200/70 bg-white p-6 shadow-sm sm:p-8">
-                  <div className="flex items-center gap-3">
+                <div className="overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm">
+                  {/* Header bar */}
+                  <div className="flex items-center gap-3 border-b border-gray-200/70 bg-gray-50/60 px-6 py-4 sm:px-8 sm:py-5">
                     <span className="font-mono text-xs font-semibold text-diensten-orange">
                       03
                     </span>
@@ -289,23 +290,34 @@ export default function LaEmpresaPage() {
                     </span>
                   </div>
 
-                  <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
+                  {/* 3 values */}
+                  <ul className="grid divide-y divide-gray-200/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
                     {VALORES.map((v, i) => (
-                      <div key={v} className="flex items-center gap-3 sm:gap-4">
-                        <span className="rounded-full bg-diensten-orange/10 px-5 py-2 text-base font-semibold text-diensten-orange sm:text-lg">
+                      <li
+                        key={v}
+                        className="group relative flex items-center justify-between gap-4 overflow-hidden px-6 py-6 transition-colors hover:bg-diensten-orange/5 sm:flex-col sm:items-start sm:justify-start sm:px-7 sm:py-9 lg:px-8 lg:py-10"
+                      >
+                        <span className="font-mono text-[11px] font-semibold tracking-[0.22em] text-diensten-orange sm:text-xs">
+                          0{i + 1}
+                          <span className="text-gray-300"> / 03</span>
+                        </span>
+                        <span
+                          className="text-2xl font-bold italic leading-none tracking-tight text-gray-900 sm:mt-5 sm:text-3xl lg:mt-6 lg:text-4xl"
+                          style={{
+                            fontFamily:
+                              "var(--font-archivo), system-ui, sans-serif",
+                          }}
+                        >
                           {v}
                         </span>
-                        {i < VALORES.length - 1 && (
-                          <span
-                            className="text-gray-300"
-                            aria-hidden
-                          >
-                            —
-                          </span>
-                        )}
-                      </div>
+                        {/* Bottom accent line that slides in on hover */}
+                        <span
+                          className="absolute bottom-0 left-0 h-0.5 w-0 bg-diensten-orange transition-all duration-300 group-hover:w-full"
+                          aria-hidden
+                        />
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
