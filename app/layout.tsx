@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import { Archivo } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["700"],
+  variable: "--font-archivo",
+  display: "swap",
+});
 
 const bp = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -55,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className={`scroll-smooth ${archivo.variable}`}>
       <body className="antialiased">
         <main className="min-h-screen">{children}</main>
       </body>

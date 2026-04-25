@@ -13,9 +13,8 @@ export const metadata: Metadata = {
 
 const SERVICIOS = [
   "Obras Civiles",
-  "Obras Eléctricas (baja y media tensión)",
+  "Obras Eléctricas",
   "Obras Termomecánicas",
-  "Obras cloacales",
   "Diseño y despliegue de redes de voz y datos",
   "Provisión de equipamiento de telecomunicaciones para voz y datos",
   "Provisión de infraestructura para redes de telecomunicaciones",
@@ -23,10 +22,21 @@ const SERVICIOS = [
 ];
 
 const MERCADOS = [
+  { label: "Empresas", icon: "office" },
   { label: "Operadores", icon: "tower" },
   { label: "Cooperativas", icon: "handshake" },
   { label: "Gobierno", icon: "building" },
   { label: "Countries", icon: "home" },
+];
+
+const VALORES = ["Calidad", "Experiencia", "Compromiso"];
+
+const LOGROS = [
+  { value: "30.000", unit: "m²", label: "construidos" },
+  { value: "70.000", unit: "m²", label: "de oficinas comerciales" },
+  { value: "+1.000", unit: "", label: "sitios de Telefonía" },
+  { value: "+150", unit: "", label: "locales comerciales" },
+  { value: "+19", unit: "", label: "años de trayectoria" },
 ];
 
 export default function LaEmpresaPage() {
@@ -49,33 +59,47 @@ export default function LaEmpresaPage() {
           </div>
           <Container className="relative z-10 flex flex-1 flex-col items-start justify-center">
             <div className="max-w-3xl text-left">
-              <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5rem]">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-diensten-orange sm:text-base">
+                Proyectar <span className="text-white/60">·</span> Construir <span className="text-white/60">·</span> Desarrollar
+              </p>
+              <h1 className="mt-4 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5rem]">
                 La Empresa
               </h1>
               <p className="mt-6 text-lg text-white/90">
-                Contribuyendo a la realización de obras con productos y servicios
+                Contribuyendo al desarrollo de obras mediante productos y servicios
                 de alta calidad en todo el país.
               </p>
             </div>
           </Container>
         </section>
 
-        {/* La Empresa - Quiénes somos y servicios */}
+        {/* Servicios - Qué hacemos y prestaciones */}
         <section className="py-16 sm:py-20 lg:py-24">
           <Container>
             <div className="mx-auto max-w-5xl">
               <div className="grid gap-12 lg:grid-cols-[1fr,400px] lg:gap-16 lg:items-start">
                 <div className="space-y-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
+                    Servicios
+                  </p>
                   <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    Obras y Servicios Diensten S.A.
+                    Soluciones integrales de alta calidad
                   </h2>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Hemos sido creados con el objetivo fundamental de contribuir
-                    a la realización de obras con productos y servicios de alta
-                    calidad. Bajo esta premisa, nos hemos especializado en las
-                    siguientes prestaciones:
+                    En Diensten nuestro objetivo fundamental es contribuir al
+                    desarrollo de obras mediante la provisión de productos y
+                    servicios de alta calidad. Trabajamos con estándares técnicos
+                    exigentes, personal capacitado y procesos eficientes que
+                    garantizan resultados confiables y duraderos.
                   </p>
-                  <ul className="space-y-3">
+                  <p className="text-lg leading-relaxed text-gray-600">
+                    Buscamos superar las expectativas de nuestros clientes,
+                    ofreciendo soluciones integrales, responsables y seguras,
+                    adaptadas a cada proyecto. Nuestra misión se basa en el
+                    compromiso, la mejora continua y el respeto por el tiempo,
+                    los recursos y el entorno para un futuro sostenible común.
+                  </p>
+                  <ul className="space-y-3 pt-2">
                     {SERVICIOS.map((s) => (
                       <li
                         key={s}
@@ -89,14 +113,6 @@ export default function LaEmpresaPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    El <strong className="text-gray-900">GRUPO DIENSTEN</strong>{" "}
-                    busca ofrecer a través de sus empresas soluciones integrales
-                    con el objetivo de satisfacer las demandas de nuestros
-                    clientes. Cada una tiene objetivos distintos pero comparten
-                    la filosofía de ofrecer productos y servicios de alta
-                    calidad.
-                  </p>
                 </div>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:aspect-square lg:sticky lg:top-24">
                   <Image
@@ -112,15 +128,65 @@ export default function LaEmpresaPage() {
           </Container>
         </section>
 
+        {/* Logros / Stats */}
+        <section className="bg-[#1E3A42] py-16 sm:py-20">
+          <Container>
+            <div className="mx-auto max-w-5xl">
+              <div className="text-center">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
+                  Trayectoria
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Desde 2007 generamos valor para cada cliente
+                </h2>
+              </div>
+              <dl className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
+                {LOGROS.map((l) => (
+                  <div key={l.label} className="text-center">
+                    <dt className="sr-only">{l.label}</dt>
+                    <dd>
+                      <span className="block text-3xl font-bold text-diensten-orange sm:text-4xl">
+                        {l.value}
+                        {l.unit && (
+                          <span className="text-2xl sm:text-3xl">{l.unit}</span>
+                        )}
+                      </span>
+                      <span className="mt-2 block text-sm text-white/80">
+                        {l.label}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-10 text-center text-white/80">
+                Asociaciones a largo plazo con empresas multinacionales y
+                ejecución de proyectos a nivel nacional e internacional.
+              </p>
+            </div>
+          </Container>
+        </section>
+
         {/* Visión, Misión y Valores */}
         <section id="vision" className="bg-gray-50 py-16 sm:py-20 lg:py-24">
           <Container>
             <div className="mx-auto max-w-5xl">
-              <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Nuestra Visión, Valores y Compromisos
-              </h2>
+              <div className="text-center">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
+                  Visión, Misión y Valores
+                </p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  Donde la calidad es nuestro estándar
+                </h2>
+                <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-600">
+                  En 2007 iniciamos nuestro camino con la misión de aportar al
+                  desarrollo de obras mediante productos y servicios de alta
+                  calidad. Hoy, como Grupo Diensten, ofrecemos soluciones
+                  integrales guiados por una filosofía común orientada a la
+                  excelencia y a la satisfacción de nuestros clientes.
+                </p>
+              </div>
 
-              <div className="mt-12 grid gap-10 lg:gap-16">
+              <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
                 {/* Visión */}
                 <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
                   <h3 className="text-xl font-bold text-diensten-orange">
@@ -138,38 +204,34 @@ export default function LaEmpresaPage() {
                   <h3 className="text-xl font-bold text-diensten-orange">
                     Misión
                   </h3>
-                  <ol className="mt-3 space-y-2 text-gray-600">
-                    <li>
-                      <strong>1.</strong> Obtener satisfacción de nuestros
-                      clientes brindando servicios acorde a sus necesidades y
-                      exhibiendo en cada operación compromiso de superar sus
-                      expectativas.
-                    </li>
-                    <li>
-                      <strong>2.</strong> Construir un ambiente de trabajo
-                      agradable alcanzando un alto grado de motivación,
-                      promoviendo la capacitación permanente y desarrollando la
-                      actitud de servicio.
-                    </li>
-                    <li>
-                      <strong>3.</strong> Mantener un compromiso ético en las
-                      operaciones comerciales.
-                    </li>
-                    <li>
-                      <strong>4.</strong> Generar valor para los clientes,
-                      proveedores, empleados y accionistas.
-                    </li>
-                  </ol>
+                  <p className="mt-3 text-gray-600">
+                    Brindamos soluciones orientadas a la satisfacción del
+                    cliente, actuando con ética y compromiso, y generando valor
+                    a través de un equipo motivado y en constante desarrollo.
+                  </p>
                 </div>
               </div>
 
-              <p className="mt-10 text-center text-gray-600 lg:mx-auto lg:max-w-3xl">
-                Para cumplir con las prestaciones indicadas, GRUPO DIENSTEN
-                articula una importante sinergia con diversas empresas del
-                mercado que comparten su visión y Política de Cumplimiento,
-                actuando como representante comercial o asociado según los
-                requerimientos del cliente.
-              </p>
+              {/* Valores */}
+              <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm sm:p-8 lg:mt-8">
+                <h3 className="text-xl font-bold text-diensten-orange">
+                  Valores
+                </h3>
+                <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4">
+                  {VALORES.map((v, i) => (
+                    <div key={v} className="flex items-center gap-3 sm:gap-4">
+                      <span className="rounded-full bg-diensten-orange/10 px-5 py-2 text-base font-semibold text-diensten-orange sm:text-lg">
+                        {v}
+                      </span>
+                      {i < VALORES.length - 1 && (
+                        <span className="text-gray-300" aria-hidden>
+                          —
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </Container>
         </section>
@@ -223,32 +285,40 @@ export default function LaEmpresaPage() {
             <div className="mx-auto max-w-5xl">
               <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
                 <div className="space-y-6">
-                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
                     Clientes
+                  </p>
+                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    Nuestro activo más importante
                   </h2>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    OBRAS Y SERVICIOS DIENSTEN S.A. considera a los clientes
-                    como su activo más importante. Todos nuestros integrantes
-                    tienen como objetivo lograr la satisfacción de los mismos,
-                    tratando continuamente de superar las expectativas, cubriendo
-                    no sólo las necesidades manifiestas sino también aquellas
-                    que pudieran existir sin descubrir.
+                    Diensten considera a los clientes como su activo más
+                    importante, por lo cual todos sus integrantes tienen como
+                    objetivo lograr la satisfacción de los mismos, tratando
+                    continuamente de superar las expectativas, cubriendo no sólo
+                    las necesidades manifiestas sino también aquellas que
+                    pudieran existir sin descubrir.
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
                     Entendemos que de esta manera seremos elegidos
-                    permanentemente como proveedores confiables y atractivos para
-                    nuestros clientes.
+                    permanentemente como proveedores confiables y atractivos
+                    para nuestros clientes.
                   </p>
                 </div>
                 <div className="space-y-6">
-                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
                     Mercado
+                  </p>
+                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    Atención segmentada con alcance nacional
                   </h2>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Dado que no todos los clientes tienen las mismas
-                    necesidades, y con el objetivo de contar con verdaderos
-                    especialistas a la hora de asesorarlos, DIENSTEN cuenta con
-                    áreas diferenciadas por tipo de compañía:
+                    Dado que no todos los clientes poseen las mismas necesidades
+                    y con el objetivo de brindar un asesoramiento especializado,
+                    Diensten cuenta con áreas diferenciadas según el tipo de
+                    compañía y sus objetivos. Esta organización nos permite
+                    ofrecer soluciones específicas y eficientes para cada
+                    proyecto.
                   </p>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {MERCADOS.map((m) => (
@@ -266,7 +336,8 @@ export default function LaEmpresaPage() {
                     ))}
                   </div>
                   <p className="text-lg font-medium text-gray-700">
-                    Tenemos la capacidad de realizar obras en todo el país.
+                    Capacidad operativa para realizar obras en todo el
+                    territorio nacional.
                   </p>
                 </div>
               </div>
@@ -274,42 +345,29 @@ export default function LaEmpresaPage() {
           </Container>
         </section>
 
-        {/* Experiencia y Equipo */}
+        {/* Experiencia */}
         <section className="py-16 sm:py-20 lg:py-24">
           <Container>
             <div className="mx-auto max-w-5xl">
               <div className="grid gap-12 lg:grid-cols-[1fr,400px] lg:gap-16 lg:items-center">
                 <div className="space-y-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
+                    Experiencia
+                  </p>
                   <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    Experiencia y Equipo
+                    Experiencia que construye confianza
                   </h2>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Nuestra experiencia nos ha permitido crecer, desarrollarnos y
-                    generar relaciones perdurables con nuestros clientes, con
-                    un objetivo claro y fundamental: generar la satisfacción de
-                    los mismos, con los cuales hemos estrechado vínculos de
-                    mutua confianza y seguridad.
+                    Nuestra experiencia nos ha permitido crecer y consolidar
+                    relaciones duraderas con nuestros clientes, basadas en la
+                    confianza, la seguridad y la satisfacción mutua.
                   </p>
                   <p className="text-lg leading-relaxed text-gray-600">
-                    Para la ejecución de los proyectos se utilizan recursos
-                    humanos propios y de terceros, como así también los
-                    servicios de nuestros asesores externos con los que se
-                    trabaja de manera habitual.
-                  </p>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    El éxito en cada uno de los trabajos y el crecimiento de
-                    nuestra empresa se basa en un equipo de trabajo
-                    multidisciplinario integrado por distintos profesionales que
-                    comparten la misma filosofía de trabajo enfocada en el
-                    desarrollo, la excelencia y en el impulso de nuevas
-                    iniciativas sustentadas en la responsabilidad profesional.
-                  </p>
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    Obras y Servicios Diensten cuenta con procesos definidos de
-                    Implementación de Proyectos, que contemplan planes de
-                    auditorías, planes de mejoras, capacitación y una continua
-                    entrega de información a la parte Operativa, asegurando con
-                    ello óptima calidad en los servicios ofrecidos.
+                    A lo largo de nuestra trayectoria fortalecimos procesos y
+                    capacidades, permitiéndonos desarrollarnos y construir
+                    vínculos sólidos con cada cliente, con el objetivo de
+                    garantizar su satisfacción mediante un servicio profesional
+                    de calidad.
                   </p>
                   <Link
                     href="/contacto"
@@ -354,6 +412,23 @@ export default function LaEmpresaPage() {
 function MercadoIcon({ name }: { name: string }) {
   const iconClass = "h-5 w-5";
   switch (name) {
+    case "office":
+      return (
+        <svg
+          className={iconClass}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>
+      );
     case "tower":
       return (
         <svg

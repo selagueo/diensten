@@ -30,6 +30,9 @@ export function Hero() {
           <div className="mx-auto flex max-w-6xl flex-col gap-16 sm:gap-20 lg:grid lg:grid-cols-[1fr,minmax(320px,420px)] lg:items-center lg:gap-16">
             {/* Left: Text content */}
             <div className="space-y-6 text-center lg:text-left">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-diensten-orange sm:text-base">
+                Proyectar <span className="text-white/60">·</span> Construir <span className="text-white/60">·</span> Desarrollar
+              </p>
               <h1
                 id="hero-heading"
                 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-5xl xl:text-[4.25rem]"
@@ -37,9 +40,9 @@ export function Hero() {
                 Experiencia que construye futuro
               </h1>
               <p className="mx-auto max-w-xl text-lg leading-relaxed text-white/95 sm:text-xl lg:mx-0 lg:max-w-lg">
-                Somos un grupo de profesionales de la Arquitectura e Ingeniería con
-                una larga trayectoria en diversas empresas y proyectos
-                desarrollados en el interior y exterior del país.
+                En Diensten desarrollamos obras y servicios de infraestructura con un
+                enfoque integral, brindando soluciones confiables para proyectos
+                públicos y privados en todo el país.
               </p>
             </div>
 

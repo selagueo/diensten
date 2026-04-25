@@ -32,19 +32,21 @@ export function AboutSection() {
         <div className="flex flex-col items-center gap-12 py-16 sm:py-20 lg:flex-row lg:items-center lg:justify-end lg:gap-16 lg:py-24 lg:max-w-[55%] lg:ml-auto">
           {/* Left: Text content */}
           <div className="flex-1 w-full max-w-2xl space-y-6 text-center lg:max-w-none lg:pr-8 lg:text-left">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-diensten-orange">
+              Sobre nosotros
+            </p>
             <h2
               id="about-heading"
               className="text-4xl font-bold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-[3rem]"
             >
-              Equipos Extraordinarios Construyendo Proyectos Inspiradores
+              Soluciones integrales en obras e infraestructura
             </h2>
             <p className="text-lg leading-relaxed text-gray-600 sm:text-xl">
-            Obras y Servicios Diensten está constituida por un grupo de profesionales de la Arquitectura e Ingeniería con una larga trayectoria en diversas empresas y proyectos desarrollados en el interior y exterior del país. Esta integración ha posibilitado la concreción de innumerables proyectos relacionados con la construcción de edificios y sitios celulares, construcción de locales y oficinas comerciales, casetas para equipos de comunicación, shelters móviles, estructuras metálicas, centros logísticos y servicios de todo tipo para la industria.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-600 sm:text-xl">
-              Nos sentimos honrados de ser elegidos para realizar el trabajo que
-              amamos, construyendo proyectos con propósito y resolviendo
-              desafíos críticos en todo el mundo.
+              En Diensten desarrollamos obras y servicios de infraestructura con un
+              enfoque integral, brindando soluciones confiables para proyectos
+              públicos y privados en todo el país. Nuestra trayectoria se refleja
+              en altos estándares de ejecución y en un compromiso permanente con
+              cada cliente.
             </p>
             <Link
               href="/la-empresa#vision"

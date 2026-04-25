@@ -68,8 +68,8 @@ body {
 }
 
 .brands-scroll {
-  -webkit-animation: brands-scroll 35s linear infinite;
-  animation: brands-scroll 35s linear infinite;
+  -webkit-animation: brands-scroll 50s linear infinite;
+  animation: brands-scroll 50s linear infinite;
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

@@ -8,7 +8,6 @@ const LEGAL_LINKS_LEFT = [
 ];
 
 const LEGAL_LINKS_RIGHT = [
-  { label: "Política de Privacidad", href: "#", icon: "privacy" },
   { label: "Contactanos", href: "/contacto", icon: "contact" },
 ];
 
@@ -51,7 +50,7 @@ export function Footer() {
                 </span>
                 +54 9 4567-0851
               </span>
-              <a href="mailto:info@diensten.com" className="-mx-1 -my-0.5 inline-flex shrink-0 items-center gap-2 whitespace-nowrap px-1 py-1.5 text-white hover:text-gray-200">
+              <a href="mailto:info@diensten.com.ar" className="-mx-1 -my-0.5 inline-flex shrink-0 items-center gap-2 whitespace-nowrap px-1 py-1.5 text-white hover:text-gray-200">
                 <span className="shrink-0 text-gray-400">
                   <LegalLinkIcon name="mail" />
                 </span>
@@ -183,10 +182,26 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright + Powered by halfpipe */}
-        <div className="border-t border-gray-500/30 py-6">
+        {/* Copyright + Powered by GUDCOD */}
+        <div className="flex flex-col items-end gap-2 border-t border-gray-500/30 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-right text-sm text-gray-400 min-[1024px]:text-xs">
-            © {new Date().getFullYear()} Diensten. Todos los derechos reservados.
+            © {new Date().getFullYear()} Diensten.
+          </p>
+          <p className="text-right text-sm text-gray-400 min-[1024px]:text-xs">
+            Powered by{" "}
+            <a
+              href="https://gudcod.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold italic transition-colors hover:text-diensten-orange"
+              style={{
+                color: "#90A0BF",
+                fontFamily: "var(--font-archivo), system-ui, sans-serif",
+                letterSpacing: "-0.06em",
+              }}
+            >
+              GUDCOD
+            </a>
           </p>
         </div>
       </Container>

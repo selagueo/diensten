@@ -1,23 +1,35 @@
 "use client";
 
-import Image from "@/components/Img";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-const LOGOS = [
-  { src: "/logo-ypf.png", alt: "YPF" },
+const LOGOS: { src: string; alt: string; wide?: boolean }[] = [
+  // Telcos
   { src: "/logo-telecom.png", alt: "Telecom" },
-  { src: "/logo-telefonica.png", alt: "Telefónica" },
+  { src: "/logo-movistar.png", alt: "Movistar" },
   { src: "/logo-personal.png", alt: "Personal" },
   { src: "/logo-claro.png", alt: "Claro" },
-  { src: "/logo-movistar.png", alt: "Movistar" },
-  { src: "/logo-trenes-argentinos.png", alt: "Trenes Argentinos" },
-  { src: "/logo-hsbc.png", alt: "HSBC" },
-  { src: "/logo-accenture.png", alt: "Accenture" },
-  { src: "/logo-banco-nacion.png", alt: "Banco Nación" },
-  { src: "/logo-supervielle.png", alt: "Supervielle" },
-  { src: "/logo-impsa.png", alt: "IMPSA" },
+  { src: "/logo-telefonica.png", alt: "Telefónica" },
+  // Media
+  { src: "/logo-radio-nacional.png", alt: "Radio Nacional", wide: true },
   { src: "/logo-telefe.png", alt: "Telefe" },
+  // Banks
+  { src: "/logo-banco-nacion.png", alt: "Banco Nación", wide: true },
+  { src: "/logo-supervielle.png", alt: "Supervielle" },
+  { src: "/logo-hsbc.png", alt: "HSBC" },
+  // Industry & energy
+  { src: "/logo-impsa.png", alt: "IMPSA", wide: true },
+  { src: "/logo-ypf.png", alt: "YPF" },
+  { src: "/Stellantis.png", alt: "Stellantis", wide: true },
+  // Government / municipalities
   { src: "/logo-buenos-aires.png", alt: "Buenos Aires Gobierno de la Ciudad", wide: true },
-  { src: "/logo-radio-nacional.png", alt: "Radio Nacional" },
+  { src: "/3defebrero.png", alt: "Municipalidad de 3 de Febrero" },
+  { src: "/vicentelopez.png", alt: "Vivamos Vicente López" },
+  // Education & consulting
+  { src: "/LogoUADE.png", alt: "UADE" },
+  { src: "/logo-accenture.png", alt: "Accenture" },
+  // Transport & infrastructure
+  { src: "/logo-trenes-argentinos.png", alt: "Trenes Argentinos" },
+  { src: "/logo_enohsaa.png", alt: "ENOHSA", wide: true },
 ];
 
 export function BrandsCarousel() {
@@ -45,19 +57,18 @@ export function BrandsCarousel() {
           aria-hidden
         />
 
-        <div className="brands-scroll flex w-max items-center gap-12 sm:gap-16 md:gap-24">
+        <div className="brands-scroll flex w-max items-center gap-14 sm:gap-20 md:gap-24">
           {logos.map((logo, i) => (
             <div
               key={`${logo.alt}-${i}`}
-              className="flex h-12 shrink-0 items-center justify-center sm:h-14"
+              className="flex h-14 shrink-0 items-center justify-center sm:h-16"
             >
-              <Image
-                src={logo.src}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${BASE_PATH}${logo.src}`}
                 alt={logo.alt}
-                width={logo.wide ? 200 : 140}
-                height={logo.wide ? 60 : 56}
-                className={`h-10 w-auto object-contain sm:h-12 ${logo.wide ? "max-w-[180px] sm:max-w-[200px]" : "max-w-[120px] sm:max-w-[140px]"}`}
-                unoptimized
+                className={`h-12 w-auto object-contain sm:h-14 ${logo.wide ? "max-w-[200px] sm:max-w-[220px]" : "max-w-[130px] sm:max-w-[150px]"}`}
+                loading="lazy"
               />
             </div>
           ))}
