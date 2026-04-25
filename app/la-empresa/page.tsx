@@ -34,27 +34,14 @@ const SERVICIOS_TELECOM = [
   },
 ];
 
-const VALORES = [
-  {
-    label: "Calidad",
-    desc: "Estándares técnicos exigentes en cada etapa, desde el diseño hasta la entrega final.",
-  },
-  {
-    label: "Experiencia",
-    desc: "+19 años en el mercado nos respaldan, con proyectos a nivel nacional e internacional.",
-  },
-  {
-    label: "Compromiso",
-    desc: "Asociaciones a largo plazo basadas en la confianza, la ética y los resultados.",
-  },
-];
+const VALORES = ["Calidad", "Experiencia", "Compromiso"];
 
 const LOGROS = [
   { value: "30.000", unit: "m²", label: "construidos" },
   { value: "70.000", unit: "m²", label: "de oficinas comerciales" },
   { value: "+1.000", unit: "", label: "sitios de Telefonía" },
   { value: "+150", unit: "", label: "locales comerciales" },
-  { value: "+19", unit: "", label: "años de trayectoria" },
+  { value: "+19", unit: "", label: "años de trayectoria y experiencia" },
 ];
 
 const MERCADOS = [
@@ -63,24 +50,6 @@ const MERCADOS = [
   { label: "Cooperativas", icon: "handshake" },
   { label: "Gobierno", icon: "government" },
   { label: "Countries", icon: "home" },
-];
-
-const POLITICA_PUNTOS = [
-  {
-    num: "01",
-    title: "Estándares de calidad",
-    desc: "Implementamos los más altos estándares en cada proceso para asegurar el cumplimiento de los requerimientos de nuestros clientes.",
-  },
-  {
-    num: "02",
-    title: "Precios competitivos",
-    desc: "Trabajamos constantemente sobre la optimización de compras y contrataciones para ofrecer al mercado precios ajustados a la realidad del país.",
-  },
-  {
-    num: "03",
-    title: "Costos a largo plazo",
-    desc: "La alta calidad de nuestros productos y servicios reduce los costos de mantenimiento y operación de las redes a futuro.",
-  },
 ];
 
 // Blueprint grid pattern as inline style for backgrounds
@@ -133,12 +102,16 @@ export default function LaEmpresaPage() {
               </h1>
               <div className="mt-6 flex items-start gap-4">
                 <span
-                  className="mt-2 hidden h-12 w-1 shrink-0 bg-diensten-orange sm:block"
+                  className="mt-2 hidden h-16 w-1 shrink-0 bg-diensten-orange sm:block"
                   aria-hidden
                 />
-                <p className="max-w-xl text-base text-white/90 sm:text-lg">
-                  Contribuyendo al desarrollo de obras mediante productos y
-                  servicios de alta calidad en todo el país.
+                <p className="max-w-2xl text-base text-white/90 sm:text-lg">
+                  En Diensten, desarrollamos obras y servicios de
+                  infraestructura con un enfoque integral, brindando
+                  soluciones confiables para proyectos públicos y privados en
+                  todo el país. Nuestra trayectoria se refleja en altos
+                  estándares de ejecución y en un compromiso permanente con
+                  cada cliente.
                 </p>
               </div>
             </div>
@@ -225,10 +198,19 @@ export default function LaEmpresaPage() {
                   Soluciones integrales de alta calidad
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">
-                  Trabajamos con estándares técnicos exigentes, personal
-                  capacitado y procesos eficientes que garantizan resultados
-                  confiables y duraderos. Adaptamos cada solución al proyecto,
-                  con compromiso, mejora continua y respeto por el entorno.
+                  En Diensten nuestro objetivo fundamental es contribuir al
+                  desarrollo de obras mediante la provisión de productos y
+                  servicios de alta calidad. Trabajamos con estándares
+                  técnicos exigentes, personal capacitado y procesos
+                  eficientes que garantizan resultados confiables y
+                  duraderos.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-gray-600 sm:text-lg">
+                  Buscamos superar las expectativas de nuestros clientes,
+                  ofreciendo soluciones integrales, responsables y seguras,
+                  adaptadas a cada proyecto. Nuestra misión se basa en el
+                  compromiso, la mejora continua y el respeto por el tiempo,
+                  los recursos y el entorno para un futuro sostenible común.
                 </p>
               </div>
 
@@ -294,7 +276,7 @@ export default function LaEmpresaPage() {
                 />
               </div>
 
-              {/* Valores: 3 pillars with descriptions */}
+              {/* Valores: 3 chips */}
               <div className="mt-4 sm:mt-6">
                 <div className="rounded-2xl border border-gray-200/70 bg-white p-6 shadow-sm sm:p-8">
                   <div className="flex items-center gap-3">
@@ -307,105 +289,23 @@ export default function LaEmpresaPage() {
                     </span>
                   </div>
 
-                  <div className="mt-6 grid gap-6 sm:grid-cols-3 sm:gap-8">
+                  <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
                     {VALORES.map((v, i) => (
-                      <div key={v.label} className="relative">
-                        <div className="flex items-baseline gap-2">
+                      <div key={v} className="flex items-center gap-3 sm:gap-4">
+                        <span className="rounded-full bg-diensten-orange/10 px-5 py-2 text-base font-semibold text-diensten-orange sm:text-lg">
+                          {v}
+                        </span>
+                        {i < VALORES.length - 1 && (
                           <span
-                            className="text-2xl font-bold italic text-diensten-orange sm:text-3xl"
-                            style={{
-                              fontFamily:
-                                "var(--font-archivo), system-ui, sans-serif",
-                            }}
+                            className="text-gray-300"
+                            aria-hidden
                           >
-                            0{i + 1}
+                            —
                           </span>
-                          <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-                            {v.label}
-                          </h3>
-                        </div>
-                        <p className="mt-2 text-sm leading-relaxed text-gray-600 sm:text-base">
-                          {v.desc}
-                        </p>
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        {/* POLÍTICA DE CUMPLIMIENTO */}
-        <section className="relative py-16 sm:py-20 lg:py-24">
-          <Container>
-            <div className="mx-auto max-w-6xl">
-              <div className="grid gap-10 lg:grid-cols-[5fr,7fr] lg:gap-14 lg:items-start">
-                {/* Image with overlay */}
-                <div className="relative">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:aspect-[4/5] lg:sticky lg:top-24">
-                    <Image
-                      src="/obras-hero.png"
-                      alt="Obras y proyectos Diensten"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 480px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                      <div className="flex items-center gap-2 text-white/90">
-                        <span
-                          className="h-px w-6 bg-diensten-orange"
-                          aria-hidden
-                        />
-                        <span className="text-[10px] font-mono font-semibold uppercase tracking-[0.25em]">
-                          OBRAS Y SERVICIOS DIENSTEN S.A.
-                        </span>
-                      </div>
-                      <p className="mt-2 text-base font-semibold text-white sm:text-lg">
-                        Calidad técnica, costos optimizados, resultados
-                        duraderos.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="border-l-2 border-diensten-orange pl-4 sm:pl-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-diensten-orange sm:text-xs">
-                      [ Política de Cumplimiento ]
-                    </p>
-                    <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                      Compromiso con la excelencia
-                    </h2>
-                  </div>
-
-                  <ul className="mt-8 space-y-5 sm:space-y-6">
-                    {POLITICA_PUNTOS.map((p) => (
-                      <li
-                        key={p.num}
-                        className="group relative flex gap-4 rounded-xl border border-gray-200/80 bg-white p-5 transition-colors hover:border-diensten-orange/40 sm:gap-5 sm:p-6"
-                      >
-                        <span
-                          className="font-mono text-2xl font-bold leading-none text-diensten-orange sm:text-3xl"
-                          style={{
-                            fontFamily:
-                              "var(--font-archivo), system-ui, sans-serif",
-                          }}
-                        >
-                          {p.num}
-                        </span>
-                        <div className="min-w-0 flex-1 border-l border-gray-200 pl-4 sm:pl-5">
-                          <h3 className="text-base font-bold text-gray-900 sm:text-lg">
-                            {p.title}
-                          </h3>
-                          <p className="mt-1.5 text-sm leading-relaxed text-gray-600 sm:text-base">
-                            {p.desc}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </div>
@@ -426,14 +326,17 @@ export default function LaEmpresaPage() {
                     Nuestro activo más importante
                   </h2>
                   <p className="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">
-                    Diensten considera a los clientes como su activo más
-                    importante. Buscamos superar las expectativas, cubriendo no
-                    sólo las necesidades manifiestas sino también aquellas que
-                    pudieran existir sin descubrir.
+                    Diensten considera a los Clientes como su activo más
+                    importante, por lo cual todos sus integrantes tienen como
+                    objetivo lograr la satisfacción de los mismos, tratando
+                    continuamente de superar las expectativas, cubriendo no
+                    sólo las necesidades manifiestas sino también aquellas
+                    que pudieran existir sin descubrir.
                   </p>
                   <p className="mt-3 text-base leading-relaxed text-gray-600 sm:text-lg">
-                    Así seremos elegidos permanentemente como proveedores
-                    confiables y atractivos.
+                    Entendemos que de esta manera seremos elegidos
+                    permanentemente como proveedores confiables y atractivos
+                    para nuestros Clientes.
                   </p>
                   <Link
                     href="/clientes"
@@ -464,12 +367,18 @@ export default function LaEmpresaPage() {
                       [ Mercado ]
                     </p>
                     <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                      Atención segmentada
+                      Atención profesional segmentada
                     </h2>
                     <p className="mt-5 text-base leading-relaxed text-gray-600 sm:text-lg">
-                      Contamos con áreas diferenciadas según el tipo de
-                      compañía y sus objetivos, brindando soluciones
-                      específicas y eficientes para cada proyecto.
+                      Dado que no todos los clientes poseen las mismas
+                      necesidades y con el objetivo de brindar un asesoramiento
+                      especializado, Diensten cuenta con áreas diferenciadas
+                      según el tipo de compañía y sus objetivos. Esta
+                      organización nos permite ofrecer soluciones específicas y
+                      eficientes para cada proyecto.
+                    </p>
+                    <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-gray-700">
+                      Trabajamos con
                     </p>
                   </div>
 
@@ -551,9 +460,16 @@ export default function LaEmpresaPage() {
                   Experiencia que construye confianza
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-                  Fortalecimos procesos y capacidades a lo largo de nuestra
-                  trayectoria, construyendo vínculos sólidos con cada cliente y
-                  garantizando un servicio profesional de calidad.
+                  Nuestra experiencia nos ha permitido crecer y consolidar
+                  relaciones duraderas con nuestros clientes, basadas en la
+                  confianza, la seguridad y la satisfacción mutua.
+                </p>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+                  A lo largo de nuestra trayectoria fortalecimos procesos y
+                  capacidades, permitiéndonos desarrollarnos y construir
+                  vínculos sólidos con cada cliente, con el objetivo de
+                  garantizar su satisfacción mediante un servicio profesional
+                  de calidad.
                 </p>
               </div>
 
