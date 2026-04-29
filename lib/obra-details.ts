@@ -33,4 +33,25 @@ export const OBRA_DETAILS: Record<string, ObraDetail> = {
       },
     ],
   },
+  "torre-boston-oficinas-stellantis": {
+    sector: "Automotriz",
+    sections: [
+      {
+        title: "Áreas Comunes · Oficinas",
+        subtitle: "Piso 21 y Piso 22",
+        meta: "Torre Boston",
+        folder: "/obras/automotriz/torre-boston-oficinas-stellantis/areas-comunes-oficinas",
+      },
+    ],
+  },
+  "telefonica-movistar-local-comercial": {
+    sector: "Telecomunicaciones",
+    sections: [
+      {
+        title: "CEC Callao",
+        subtitle: "Av. Callao 1065, CABA",
+        folder: "/obras/telecomunicaciones/telefonica-movistar-local-comercial/cec-callao",
+      },
+    ],
+  },
 };

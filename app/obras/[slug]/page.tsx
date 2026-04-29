@@ -33,8 +33,11 @@ function parseImage(folder: string, filename: string): GalleryItem {
   const m = noExt.match(/^(.*?)(?:\s+(\d+))?$/);
   const baseRaw = (m?.[1] ?? noExt).trim();
   const index = m?.[2] ? parseInt(m[2], 10) : 1;
-  // Title-case first letter, keep rest. Tidy a typo we saw ("sala te teleconferencia").
-  const cleaned = baseRaw.replace(/\bte\b/i, "de");
+  // Title-case first letter, normalize separators ("_" → "·"), tidy a typo
+  // we saw ("sala te teleconferencia" → "sala de teleconferencia").
+  const cleaned = baseRaw
+    .replace(/\s*_\s*/g, " · ")
+    .replace(/\bte\b/i, "de");
   const area = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
   return {
     src: `${folder.replace(/\/$/, "")}/${filename}`,
