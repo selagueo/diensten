@@ -48,10 +48,34 @@ export const OBRA_DETAILS: Record<string, ObraDetail> = {
     sector: "Logística",
     sections: [
       {
-        title: "Informe Fotográfico",
-        subtitle: "Conforme a obra",
-        meta: "Sitio: Palomar",
-        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/recorrido",
+        title: "Sector 01",
+        subtitle: "Accesos y veredas perimetrales",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-01",
+      },
+      {
+        title: "Sector 02",
+        subtitle: "Rampas y caminos peatonales",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-02",
+      },
+      {
+        title: "Sector 03",
+        subtitle: "Plaza, sendas y luminarias",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-03",
+      },
+      {
+        title: "Sector 04",
+        subtitle: "Acceso vehicular y garita",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-04",
+      },
+      {
+        title: "Sector 05",
+        subtitle: "Patios y solados",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-05",
+      },
+      {
+        title: "Sector 06",
+        subtitle: "Canteros y terminaciones",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/sector-06",
       },
     ],
   },

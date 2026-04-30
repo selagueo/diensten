@@ -150,13 +150,40 @@ export default async function ObraDetailPage({ params }: Props) {
             )}
 
             <div className="space-y-24 lg:space-y-32">
-              {sections.map((section) => {
+              {sections.map((section, idx) => {
                 const beforeGroups = section.groups.filter((g) => g.isBefore);
                 const afterGroups = section.groups.filter((g) => !g.isBefore);
+                const beforeCount = beforeGroups.reduce(
+                  (n, g) => n + g.items.length,
+                  0,
+                );
+                const afterCount = afterGroups.reduce(
+                  (n, g) => n + g.items.length,
+                  0,
+                );
+                const isMulti = sections.length > 1;
+                const hideAreaHeading = afterGroups.length === 1;
 
                 return (
-                  <article key={section.folder}>
+                  <article
+                    key={section.folder}
+                    className={
+                      isMulti && idx > 0
+                        ? "border-t border-gray-200 pt-16 sm:pt-20 lg:pt-24"
+                        : ""
+                    }
+                  >
                     <header className="mb-10 sm:mb-12">
+                      {isMulti && (
+                        <p className="mb-3 font-mono text-[11px] font-semibold tracking-[0.28em] text-diensten-orange sm:text-xs">
+                          [ {String(idx + 1).padStart(2, "0")}
+                          <span className="text-gray-400">
+                            {" "}
+                            / {String(sections.length).padStart(2, "0")}{" "}
+                          </span>
+                          ]
+                        </p>
+                      )}
                       <div className="border-l-2 border-gray-900 pl-5">
                         <h2 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
                           {section.title}
@@ -179,15 +206,21 @@ export default async function ObraDetailPage({ params }: Props) {
                     {/* Antes — situación existente */}
                     {beforeGroups.length > 0 && (
                       <div className="mb-12 sm:mb-16">
-                        <div className="mb-4 flex items-center gap-3">
+                        <div className="mb-4 flex flex-wrap items-center gap-3">
                           <span className="inline-flex items-center rounded-full bg-gray-900 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                             Antes
                           </span>
                           <span className="text-sm uppercase tracking-wider text-gray-500">
                             Situación existente
                           </span>
+                          {beforeCount > 0 && (
+                            <span className="ml-auto font-mono text-xs text-gray-400">
+                              {String(beforeCount).padStart(2, "0")}{" "}
+                              {beforeCount === 1 ? "foto" : "fotos"}
+                            </span>
+                          )}
                         </div>
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
                           {beforeGroups.flatMap((g) =>
                             g.items.map((item) => (
                               <figure
@@ -199,8 +232,8 @@ export default async function ObraDetailPage({ params }: Props) {
                                     src={item.src}
                                     alt={`${item.area} — situación existente`}
                                     fill
-                                    className="object-cover grayscale transition-transform duration-500 group-hover:scale-[1.02]"
-                                    sizes="(min-width: 640px) 50vw, 100vw"
+                                    className="object-cover grayscale transition-all duration-500 group-hover:scale-[1.02] group-hover:grayscale-0"
+                                    sizes="(min-width: 1024px) 25vw, 50vw"
                                   />
                                 </div>
                               </figure>
@@ -214,21 +247,29 @@ export default async function ObraDetailPage({ params }: Props) {
                     {afterGroups.length > 0 && (
                       <>
                         {beforeGroups.length > 0 && (
-                          <div className="mb-6 flex items-center gap-3">
-                            <span className="inline-flex items-center rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                          <div className="mb-6 flex flex-wrap items-center gap-3">
+                            <span className="inline-flex items-center rounded-full bg-diensten-orange px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                               Después
                             </span>
                             <span className="text-sm uppercase tracking-wider text-gray-500">
                               Intervención Diensten
                             </span>
+                            {afterCount > 0 && (
+                              <span className="ml-auto font-mono text-xs text-gray-400">
+                                {String(afterCount).padStart(2, "0")}{" "}
+                                {afterCount === 1 ? "foto" : "fotos"}
+                              </span>
+                            )}
                           </div>
                         )}
                         <div className="space-y-12 sm:space-y-16">
                           {afterGroups.map((group) => (
                             <div key={group.area}>
-                              <h3 className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-gray-500">
-                                {group.area}
-                              </h3>
+                              {!hideAreaHeading && (
+                                <h3 className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-gray-500">
+                                  {group.area}
+                                </h3>
+                              )}
                               <div
                                 className={`grid gap-4 lg:gap-6 ${
                                   group.items.length === 1
