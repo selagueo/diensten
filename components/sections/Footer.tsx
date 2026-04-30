@@ -40,7 +40,7 @@ export function Footer() {
               className="inline-block transition-opacity hover:opacity-90"
             >
               <Image
-                src="/diensten-logo-simple.png"
+                src="/diensten-logo-simple.webp"
                 alt="Diensten"
                 width={160}
                 height={160}

@@ -69,7 +69,7 @@ export default function LaEmpresaPage() {
         <section className="relative flex min-h-[100svh] items-center justify-start overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36">
           <div className="absolute inset-0" aria-hidden>
             <Image
-              src="/la-empresa-hero.png"
+              src="/la-empresa-hero.webp"
               alt=""
               fill
               className="object-cover object-center"
@@ -441,7 +441,7 @@ export default function LaEmpresaPage() {
         <section className="relative overflow-hidden bg-[#15303A] py-16 sm:py-20 lg:py-24">
           <div className="absolute inset-0" aria-hidden>
             <Image
-              src="/hero-background.png"
+              src="/hero-background.webp"
               alt=""
               fill
               className="object-cover object-center opacity-25"

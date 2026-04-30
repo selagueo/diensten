@@ -6,7 +6,7 @@
 export const FEATURED_OBRAS = [
   {
     slug: "telefonica-remodelacion-republica",
-    image: "/hero-card-office.png",
+    image: "/hero-card-office.webp",
     title: "Telefónica: Obra Remodelación República",
     location: "BUENOS AIRES, ARGENTINA",
     description:
@@ -14,7 +14,7 @@ export const FEATURED_OBRAS = [
   },
   {
     slug: "torre-boston-oficinas-stellantis",
-    image: "/hero-card-boston.png",
+    image: "/hero-card-boston.webp",
     title: "Torre Boston: Oficinas Stellantis",
     location: "BUENOS AIRES, ARGENTINA",
     description:
@@ -22,7 +22,7 @@ export const FEATURED_OBRAS = [
   },
   {
     slug: "palomar-nuevo-recorrido-suramericana",
-    image: "/hero-card-palomar.png",
+    image: "/hero-card-palomar.webp",
     title: "Palomar: Nuevo Recorrido Suramericana",
     location: "BUENOS AIRES, ARGENTINA",
     description:
@@ -30,7 +30,7 @@ export const FEATURED_OBRAS = [
   },
   {
     slug: "telefonica-movistar-local-comercial",
-    image: "/hero-card-movistar.png",
+    image: "/hero-card-movistar.webp",
     title: "Telefónica Movistar: Local Comercial",
     location: "BUENOS AIRES, ARGENTINA",
     description:

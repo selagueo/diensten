@@ -20,7 +20,7 @@ export function AboutSection() {
       {/* Image - absolute left edge, desktop only */}
       <div className="pointer-events-none absolute left-0 top-20 hidden w-[40%] min-w-[380px] lg:block lg:bottom-20">
         <Image
-          src="/about-section.png"
+          src="/about-section.webp"
           alt="Profesionales de construcción trabajando en obra"
           fill
           className="object-cover"

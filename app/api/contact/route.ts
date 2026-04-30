@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = "force-dynamic";
 
 // In-memory rate limiter: max 5 requests per IP per 10 minutes
 const RATE_LIMIT_MAX = 5;
@@ -138,6 +138,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,

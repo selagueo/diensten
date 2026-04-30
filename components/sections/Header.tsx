@@ -61,7 +61,7 @@ export function Header() {
           >
             <span className="relative flex items-center">
               <Image
-                src="/diensten-logo.png"
+                src="/diensten-logo.webp"
                 alt="Diensten - Obras y Servicios"
                 width={377}
                 height={118}
@@ -73,7 +73,7 @@ export function Header() {
                 priority
               />
               <Image
-                src="/diensten-logo-simple.png"
+                src="/diensten-logo-simple.webp"
                 alt="Diensten"
                 width={96}
                 height={96}

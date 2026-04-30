@@ -17,46 +17,46 @@ const CLIENT_CATEGORIES: { title: string; clients: Client[] }[] = [
   {
     title: "Telecomunicaciones y Medios",
     clients: [
-      { src: "/logo-telecom.png", alt: "Telecom" },
-      { src: "/logo-movistar.png", alt: "Movistar" },
-      { src: "/logo-personal.png", alt: "Personal" },
-      { src: "/logo-claro.png", alt: "Claro" },
-      { src: "/logo-telefonica.png", alt: "Telefónica" },
-      { src: "/logo-radio-nacional.png", alt: "Radio Nacional" },
-      { src: "/logo-telefe.png", alt: "Telefe" },
+      { src: "/logo-telecom.webp", alt: "Telecom" },
+      { src: "/logo-movistar.webp", alt: "Movistar" },
+      { src: "/logo-personal.webp", alt: "Personal" },
+      { src: "/logo-claro.webp", alt: "Claro" },
+      { src: "/logo-telefonica.webp", alt: "Telefónica" },
+      { src: "/logo-radio-nacional.webp", alt: "Radio Nacional" },
+      { src: "/logo-telefe.webp", alt: "Telefe" },
     ],
   },
   {
     title: "Bancos y Finanzas",
     clients: [
-      { src: "/logo-banco-nacion.png", alt: "Banco Nación" },
-      { src: "/logo-supervielle.png", alt: "Supervielle" },
-      { src: "/logo-hsbc.png", alt: "HSBC" },
+      { src: "/logo-banco-nacion.webp", alt: "Banco Nación" },
+      { src: "/logo-supervielle.webp", alt: "Supervielle" },
+      { src: "/logo-hsbc.webp", alt: "HSBC" },
     ],
   },
   {
     title: "Industria y Energía",
     clients: [
-      { src: "/logo-impsa.png", alt: "IMPSA" },
-      { src: "/logo-ypf.png", alt: "YPF" },
-      { src: "/Stellantis.png", alt: "Stellantis" },
+      { src: "/logo-impsa.webp", alt: "IMPSA" },
+      { src: "/logo-ypf.webp", alt: "YPF" },
+      { src: "/Stellantis.webp", alt: "Stellantis" },
     ],
   },
   {
     title: "Gobierno",
     clients: [
-      { src: "/logo-buenos-aires.png", alt: "Buenos Aires Gobierno de la Ciudad" },
-      { src: "/3defebrero.png", alt: "Municipalidad de 3 de Febrero" },
-      { src: "/vicentelopez.png", alt: "Vivamos Vicente López" },
+      { src: "/logo-buenos-aires.webp", alt: "Buenos Aires Gobierno de la Ciudad" },
+      { src: "/3defebrero.webp", alt: "Municipalidad de 3 de Febrero" },
+      { src: "/vicentelopez.webp", alt: "Vivamos Vicente López" },
     ],
   },
   {
     title: "Otros Sectores",
     clients: [
-      { src: "/LogoUADE.png", alt: "UADE" },
-      { src: "/logo-accenture.png", alt: "Accenture" },
-      { src: "/logo-trenes-argentinos.png", alt: "Trenes Argentinos" },
-      { src: "/logo_enohsaa.png", alt: "ENOHSA" },
+      { src: "/LogoUADE.webp", alt: "UADE" },
+      { src: "/logo-accenture.webp", alt: "Accenture" },
+      { src: "/logo-trenes-argentinos.webp", alt: "Trenes Argentinos" },
+      { src: "/logo_enohsaa.webp", alt: "ENOHSA" },
     ],
   },
 ];
@@ -70,7 +70,7 @@ export default function ClientesPage() {
         <section className="relative flex min-h-[70vh] items-center justify-start pt-28 pb-24 sm:pt-32 lg:pt-36">
           <div className="absolute inset-0" aria-hidden>
             <Image
-              src="/clientes-hero.png"
+              src="/clientes-hero.webp"
               alt=""
               fill
               className="object-cover object-center"

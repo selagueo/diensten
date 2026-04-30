@@ -21,7 +21,7 @@ export default function ObrasPage() {
         <section className="relative flex min-h-[70vh] items-center justify-start pt-28 pb-24 sm:pt-32 lg:pt-36">
           <div className="absolute inset-0" aria-hidden>
             <Image
-              src="/obras-hero.png"
+              src="/obras-hero.webp"
               alt=""
               fill
               className="object-cover object-center"

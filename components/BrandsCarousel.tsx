@@ -4,32 +4,32 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const LOGOS: { src: string; alt: string; wide?: boolean }[] = [
   // Telcos
-  { src: "/logo-telecom.png", alt: "Telecom" },
-  { src: "/logo-movistar.png", alt: "Movistar" },
-  { src: "/logo-personal.png", alt: "Personal" },
-  { src: "/logo-claro.png", alt: "Claro" },
-  { src: "/logo-telefonica.png", alt: "Telefónica" },
+  { src: "/logo-telecom.webp", alt: "Telecom" },
+  { src: "/logo-movistar.webp", alt: "Movistar" },
+  { src: "/logo-personal.webp", alt: "Personal" },
+  { src: "/logo-claro.webp", alt: "Claro" },
+  { src: "/logo-telefonica.webp", alt: "Telefónica" },
   // Media
-  { src: "/logo-radio-nacional.png", alt: "Radio Nacional", wide: true },
-  { src: "/logo-telefe.png", alt: "Telefe" },
+  { src: "/logo-radio-nacional.webp", alt: "Radio Nacional", wide: true },
+  { src: "/logo-telefe.webp", alt: "Telefe" },
   // Banks
-  { src: "/logo-banco-nacion.png", alt: "Banco Nación", wide: true },
-  { src: "/logo-supervielle.png", alt: "Supervielle" },
-  { src: "/logo-hsbc.png", alt: "HSBC" },
+  { src: "/logo-banco-nacion.webp", alt: "Banco Nación", wide: true },
+  { src: "/logo-supervielle.webp", alt: "Supervielle" },
+  { src: "/logo-hsbc.webp", alt: "HSBC" },
   // Industry & energy
-  { src: "/logo-impsa.png", alt: "IMPSA", wide: true },
-  { src: "/logo-ypf.png", alt: "YPF" },
-  { src: "/Stellantis.png", alt: "Stellantis", wide: true },
+  { src: "/logo-impsa.webp", alt: "IMPSA", wide: true },
+  { src: "/logo-ypf.webp", alt: "YPF" },
+  { src: "/Stellantis.webp", alt: "Stellantis", wide: true },
   // Government / municipalities
-  { src: "/logo-buenos-aires.png", alt: "Buenos Aires Gobierno de la Ciudad", wide: true },
-  { src: "/3defebrero.png", alt: "Municipalidad de 3 de Febrero" },
-  { src: "/vicentelopez.png", alt: "Vivamos Vicente López" },
+  { src: "/logo-buenos-aires.webp", alt: "Buenos Aires Gobierno de la Ciudad", wide: true },
+  { src: "/3defebrero.webp", alt: "Municipalidad de 3 de Febrero" },
+  { src: "/vicentelopez.webp", alt: "Vivamos Vicente López" },
   // Education & consulting
-  { src: "/LogoUADE.png", alt: "UADE" },
-  { src: "/logo-accenture.png", alt: "Accenture" },
+  { src: "/LogoUADE.webp", alt: "UADE" },
+  { src: "/logo-accenture.webp", alt: "Accenture" },
   // Transport & infrastructure
-  { src: "/logo-trenes-argentinos.png", alt: "Trenes Argentinos" },
-  { src: "/logo_enohsaa.png", alt: "ENOHSA", wide: true },
+  { src: "/logo-trenes-argentinos.webp", alt: "Trenes Argentinos" },
+  { src: "/logo_enohsaa.webp", alt: "ENOHSA", wide: true },
 ];
 
 export function BrandsCarousel() {

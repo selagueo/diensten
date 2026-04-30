@@ -12,7 +12,7 @@ export function Hero() {
       {/* Background image with overlay */}
       <div className="absolute inset-0" aria-hidden>
         <Image
-          src="/hero-bg.jpg"
+          src="/hero-bg.webp"
           alt=""
           fill
           className="object-cover"

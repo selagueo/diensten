@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: `${bp}/favicon.ico`, sizes: "32x32", type: "image/x-icon" },
-      { url: `${bp}/diensten-logo-simple.png`, type: "image/png" },
+      { url: `${bp}/diensten-logo-simple.webp`, type: "image/webp" },
     ],
   },
   description:
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/about-section.png",
+        url: "/about-section.webp",
         width: 1200,
         height: 630,
         alt: "Diensten Argentina — Arquitectura e Ingeniería",

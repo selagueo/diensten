@@ -11,7 +11,7 @@ export function ContactCTASection() {
       {/* Background image with overlay */}
       <div className="absolute inset-0" aria-hidden>
         <Image
-          src="/contact-cta-bg.png"
+          src="/contact-cta-bg.webp"
           alt=""
           fill
           className="object-cover"

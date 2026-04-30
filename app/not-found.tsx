@@ -21,7 +21,7 @@ export default function NotFound() {
         {/* Background image with overlay */}
         <div className="absolute inset-0" aria-hidden>
           <Image
-            src="/404-bg.png"
+            src="/404-bg.webp"
             alt=""
             fill
             className="object-cover"
