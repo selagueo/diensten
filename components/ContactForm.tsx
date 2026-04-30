@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 interface ContactFormProps {
   className?: string;
@@ -10,17 +10,18 @@ interface ContactFormProps {
 export function ContactForm({ className = "" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<TurnstileInstance>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<HCaptcha>(null);
 
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-  const isDemoMode = !siteKey;
+  const siteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+  const isDemoMode = !accessKey;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!isDemoMode && !turnstileToken) {
+    if (siteKey && !captchaToken) {
       setErrorMessage("Por favor, completá la verificación de seguridad.");
       return;
     }
@@ -37,33 +38,42 @@ export function ContactForm({ className = "" }: ContactFormProps) {
     setStatus("submitting");
 
     try {
-      const response = await fetch("/api/contact", {
+      const payload: Record<string, string> = {
+        access_key: accessKey!,
+        subject: "Nuevo mensaje desde la web — Diensten",
+        from_name: "Web Diensten",
+        name: String(formData.get("name") ?? ""),
+        email: String(formData.get("email") ?? ""),
+        phone: String(formData.get("phone") ?? ""),
+        message: String(formData.get("message") ?? ""),
+        botcheck: String(formData.get("botcheck") ?? ""),
+      };
+      if (captchaToken) payload["h-captcha-response"] = captchaToken;
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          message: formData.get("message"),
-          turnstileToken,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Error al enviar el mensaje");
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Error al enviar el mensaje");
       }
 
       setStatus("success");
-      setTurnstileToken(null);
+      setCaptchaToken(null);
       form.reset();
-      turnstileRef.current?.reset();
+      captchaRef.current?.resetCaptcha();
     } catch (err) {
       setStatus("error");
-      setTurnstileToken(null);
+      setCaptchaToken(null);
       setErrorMessage(err instanceof Error ? err.message : "Error al enviar el mensaje. Intentá de nuevo.");
-      turnstileRef.current?.reset();
+      captchaRef.current?.resetCaptcha();
     }
   };
 
@@ -83,6 +93,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className={`space-y-6 ${className}`}>
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-900">
           Nombre <span className="text-red-500">*</span>
@@ -136,16 +147,13 @@ export function ContactForm({ className = "" }: ContactFormProps) {
         />
       </div>
 
-      {!isDemoMode && (
-        <Turnstile
-          ref={turnstileRef}
-          siteKey={siteKey!}
-          onSuccess={setTurnstileToken}
-          onExpire={() => setTurnstileToken(null)}
-          options={{
-            theme: "light",
-            size: "normal",
-          }}
+      {siteKey && (
+        <HCaptcha
+          ref={captchaRef}
+          sitekey={siteKey}
+          onVerify={setCaptchaToken}
+          onExpire={() => setCaptchaToken(null)}
+          onError={() => setCaptchaToken(null)}
         />
       )}
 
@@ -153,7 +161,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
 
       <button
         type="submit"
-        disabled={status === "submitting" || (!isDemoMode && !turnstileToken)}
+        disabled={status === "submitting" || (!!siteKey && !captchaToken)}
         className="w-full rounded-full bg-diensten-orange px-8 py-4 text-base font-bold text-white transition-colors hover:bg-diensten-orange-dark disabled:opacity-70 sm:w-auto"
       >
         {status === "submitting" ? "Enviando..." : "Enviar mensaje"}

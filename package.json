@@ -9,11 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "^1.4.2",
+    "@hcaptcha/react-hcaptcha": "^2.0.2",
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "resend": "^6.9.2"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.0",
