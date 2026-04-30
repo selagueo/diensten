@@ -32,13 +32,6 @@ const CONTACT_INFO = [
     icon: "location",
     targetBlank: true,
   },
-  {
-    label: "Sede Cuyo",
-    value: "Mitre 825, Mendoza, Argentina",
-    href: "https://maps.app.goo.gl/W8ziXJHHJ5sgcd118",
-    icon: "location",
-    targetBlank: true,
-  },
 ];
 
 function ContactIcon({ name }: { name: string }) {

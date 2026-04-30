@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Container } from "@/components/Container";
+import { CountUpNumber } from "@/components/CountUpNumber";
 
 export const metadata: Metadata = {
   title: "La Empresa",
@@ -65,7 +66,7 @@ export default function LaEmpresaPage() {
       <Header />
       <main className="bg-white">
         {/* HERO */}
-        <section className="relative flex min-h-[80vh] items-center justify-start overflow-hidden pt-28 pb-20 sm:min-h-[70vh] sm:pt-32 lg:pt-36">
+        <section className="relative flex min-h-[100svh] items-center justify-start overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36">
           <div className="absolute inset-0" aria-hidden>
             <Image
               src="/la-empresa-hero.png"
@@ -79,16 +80,6 @@ export default function LaEmpresaPage() {
             <div
               className={`absolute inset-0 opacity-40 ${BLUEPRINT_GRID_DARK}`}
             />
-          </div>
-
-          {/* Year badge */}
-          <div className="absolute right-4 top-28 z-10 sm:right-8 sm:top-32 lg:top-36">
-            <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-diensten-orange animate-blink" aria-hidden />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90 sm:text-xs">
-                Desde 2007
-              </span>
-            </div>
           </div>
 
           <Container className="relative z-10">
@@ -157,7 +148,7 @@ export default function LaEmpresaPage() {
                             "var(--font-archivo), system-ui, sans-serif",
                         }}
                       >
-                        {l.value}
+                        <CountUpNumber value={l.value} delay={i * 120} />
                         {l.unit && (
                           <span className="text-2xl sm:text-3xl lg:text-[2rem]">
                             {l.unit}

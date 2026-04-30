@@ -45,6 +45,17 @@ export default function ObrasPage() {
         {/* Projects grid */}
         <section className="bg-white py-16 sm:py-20">
           <Container>
+            <div className="mb-10 flex flex-col items-start gap-2 border-l-2 border-diensten-orange pl-4 sm:mb-14 sm:pl-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-diensten-orange sm:text-xs">
+                [ Selección de proyectos ]
+              </p>
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                Algunas de nuestras obras
+              </h2>
+              <p className="mt-1 max-w-2xl text-sm text-gray-600 sm:text-base">
+                Una muestra representativa de los proyectos que realizamos. No incluye la totalidad de las obras ejecutadas.
+              </p>
+            </div>
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {OBRAS.map((obra) => (
                 <ObraCard key={obra.slug} obra={obra} />

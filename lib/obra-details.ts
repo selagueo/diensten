@@ -44,6 +44,17 @@ export const OBRA_DETAILS: Record<string, ObraDetail> = {
       },
     ],
   },
+  "palomar-nuevo-recorrido-suramericana": {
+    sector: "Logística",
+    sections: [
+      {
+        title: "Informe Fotográfico",
+        subtitle: "Conforme a obra",
+        meta: "Sitio: Palomar",
+        folder: "/obras/logistica/palomar-nuevo-recorrido-suramericana/recorrido",
+      },
+    ],
+  },
   "telefonica-movistar-local-comercial": {
     sector: "Telecomunicaciones",
     sections: [
