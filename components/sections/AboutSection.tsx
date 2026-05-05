@@ -5,7 +5,7 @@ import { Container } from "../Container";
 export function AboutSection() {
   return (
     <section
-      className="relative z-0 min-h-[100dvh] bg-white"
+      className="relative z-0 bg-white lg:min-h-[100dvh]"
       aria-labelledby="about-heading"
     >
       {/* Subtle dotted pattern */}
@@ -28,7 +28,7 @@ export function AboutSection() {
         />
       </div>
 
-      <Container className="relative z-10 flex min-h-[100dvh] flex-col justify-center">
+      <Container className="relative z-10 flex flex-col justify-center lg:min-h-[100dvh]">
         <div className="flex flex-col items-center gap-12 py-16 sm:py-20 lg:flex-row lg:items-center lg:justify-end lg:gap-16 lg:py-24 lg:max-w-[55%] lg:ml-auto">
           {/* Left: Text content */}
           <div className="flex-1 w-full max-w-2xl space-y-6 text-center lg:max-w-none lg:pr-8 lg:text-left">

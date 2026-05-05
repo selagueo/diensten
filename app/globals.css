@@ -58,28 +58,17 @@ body {
   animation: blink 1s steps(1, end) infinite;
 }
 
-@-webkit-keyframes brands-scroll {
-  0%   { -webkit-transform: translate3d(0, 0, 0);      transform: translate3d(0, 0, 0); }
-  100% { -webkit-transform: translate3d(-50%, 0, 0);   transform: translate3d(-50%, 0, 0); }
+.brands-viewport {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-@keyframes brands-scroll {
-  0%   { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
-
-.brands-scroll {
-  -webkit-animation: brands-scroll 50s linear infinite;
-  animation: brands-scroll 50s linear infinite;
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.brands-viewport::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brands-scroll {
-    -webkit-animation: none;
-    animation: none;
-  }
   .animate-blink {
     -webkit-animation: none;
     animation: none;

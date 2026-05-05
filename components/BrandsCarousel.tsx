@@ -39,68 +39,71 @@ const SPEED = 60;
 
 export function BrandsCarousel() {
   const logos = [...LOGOS, ...LOGOS]; // Duplicate for seamless loop
-  const trackRef = useRef<HTMLDivElement>(null);
-  const offsetRef = useRef(0);
-  const pausedRef = useRef(false);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
 
     // Honor reduced-motion preference
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let rafId = 0;
     let lastTs = 0;
+    let pos = 0; // float accumulator (scrollLeft is integer-rounded)
+    let userInteracting = false;
 
     const step = (ts: number) => {
       if (lastTs === 0) lastTs = ts;
       const dt = (ts - lastTs) / 1000;
       lastTs = ts;
 
-      if (!pausedRef.current) {
-        // Half the track width is one full set of logos (we duplicated above)
-        const halfWidth = track.scrollWidth / 2;
-        if (halfWidth > 0) {
-          offsetRef.current = (offsetRef.current + SPEED * dt) % halfWidth;
-          track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
-        }
+      // scrollWidth = total content; we duplicated logos so half is one full set.
+      const half = viewport.scrollWidth / 2;
+
+      if (!userInteracting && half > 0) {
+        // If the user has scrolled, sync our accumulator with the real position.
+        if (Math.abs(pos - viewport.scrollLeft) > 2) pos = viewport.scrollLeft;
+
+        pos = pos + SPEED * dt;
+        if (pos >= half) pos -= half;
+        viewport.scrollLeft = pos;
       }
+
       rafId = requestAnimationFrame(step);
     };
 
     rafId = requestAnimationFrame(step);
 
-    const pause = () => {
-      pausedRef.current = true;
+    const onTouchStart = () => {
+      userInteracting = true;
     };
-    const resume = () => {
-      pausedRef.current = false;
-      lastTs = 0; // Avoid jump after long pause
+    const onTouchEnd = () => {
+      userInteracting = false;
+      lastTs = 0; // avoid jump after pause
+      pos = viewport.scrollLeft; // resume from wherever the user left it
     };
 
-    // Pause on real interaction; resume when it ends
-    track.addEventListener("touchstart", pause, { passive: true });
-    track.addEventListener("touchend", resume, { passive: true });
-    track.addEventListener("touchcancel", resume, { passive: true });
-    track.addEventListener("mouseenter", pause);
-    track.addEventListener("mouseleave", resume);
+    viewport.addEventListener("touchstart", onTouchStart, { passive: true });
+    viewport.addEventListener("touchend", onTouchEnd, { passive: true });
+    viewport.addEventListener("touchcancel", onTouchEnd, { passive: true });
 
-    // Pause when tab is hidden, resume when visible
+    // Pause when tab hidden
     const onVisibility = () => {
-      if (document.hidden) pause();
-      else resume();
+      if (document.hidden) {
+        userInteracting = true; // re-use the flag to halt
+      } else {
+        userInteracting = false;
+        lastTs = 0;
+      }
     };
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       cancelAnimationFrame(rafId);
-      track.removeEventListener("touchstart", pause);
-      track.removeEventListener("touchend", resume);
-      track.removeEventListener("touchcancel", resume);
-      track.removeEventListener("mouseenter", pause);
-      track.removeEventListener("mouseleave", resume);
+      viewport.removeEventListener("touchstart", onTouchStart);
+      viewport.removeEventListener("touchend", onTouchEnd);
+      viewport.removeEventListener("touchcancel", onTouchEnd);
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
@@ -117,7 +120,7 @@ export function BrandsCarousel() {
         Confían en nosotros
       </p>
 
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <div
           className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent sm:w-20"
           aria-hidden
@@ -128,23 +131,25 @@ export function BrandsCarousel() {
         />
 
         <div
-          ref={trackRef}
-          className="flex w-max items-center gap-14 will-change-transform sm:gap-20 md:gap-24"
+          ref={viewportRef}
+          className="brands-viewport overflow-x-auto overflow-y-hidden"
         >
-          {logos.map((logo, i) => (
-            <div
-              key={`${logo.alt}-${i}`}
-              className="flex h-14 shrink-0 items-center justify-center sm:h-16"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${BASE_PATH}${logo.src}`}
-                alt={logo.alt}
-                className={`h-12 w-auto object-contain sm:h-14 ${logo.wide ? "max-w-[200px] sm:max-w-[220px]" : "max-w-[130px] sm:max-w-[150px]"}`}
-                loading="lazy"
-              />
-            </div>
-          ))}
+          <div className="flex w-max items-center gap-14 sm:gap-20 md:gap-24">
+            {logos.map((logo, i) => (
+              <div
+                key={`${logo.alt}-${i}`}
+                className="flex h-14 shrink-0 items-center justify-center sm:h-16"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${BASE_PATH}${logo.src}`}
+                  alt={logo.alt}
+                  className={`h-12 w-auto object-contain sm:h-14 ${logo.wide ? "max-w-[200px] sm:max-w-[220px]" : "max-w-[130px] sm:max-w-[150px]"}`}
+                  loading="eager"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
