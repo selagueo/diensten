@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const LOGOS: { src: string; alt: string; wide?: boolean }[] = [
@@ -32,8 +34,76 @@ const LOGOS: { src: string; alt: string; wide?: boolean }[] = [
   { src: "/logo_enohsaa.png", alt: "ENOHSA", wide: true },
 ];
 
+// Pixels per second — tune to taste
+const SPEED = 60;
+
 export function BrandsCarousel() {
   const logos = [...LOGOS, ...LOGOS]; // Duplicate for seamless loop
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const pausedRef = useRef(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    // Honor reduced-motion preference
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    let rafId = 0;
+    let lastTs = 0;
+
+    const step = (ts: number) => {
+      if (lastTs === 0) lastTs = ts;
+      const dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+
+      if (!pausedRef.current) {
+        // Half the track width is one full set of logos (we duplicated above)
+        const halfWidth = track.scrollWidth / 2;
+        if (halfWidth > 0) {
+          offsetRef.current = (offsetRef.current + SPEED * dt) % halfWidth;
+          track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+        }
+      }
+      rafId = requestAnimationFrame(step);
+    };
+
+    rafId = requestAnimationFrame(step);
+
+    const pause = () => {
+      pausedRef.current = true;
+    };
+    const resume = () => {
+      pausedRef.current = false;
+      lastTs = 0; // Avoid jump after long pause
+    };
+
+    // Pause on real interaction; resume when it ends
+    track.addEventListener("touchstart", pause, { passive: true });
+    track.addEventListener("touchend", resume, { passive: true });
+    track.addEventListener("touchcancel", resume, { passive: true });
+    track.addEventListener("mouseenter", pause);
+    track.addEventListener("mouseleave", resume);
+
+    // Pause when tab is hidden, resume when visible
+    const onVisibility = () => {
+      if (document.hidden) pause();
+      else resume();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      track.removeEventListener("touchstart", pause);
+      track.removeEventListener("touchend", resume);
+      track.removeEventListener("touchcancel", resume);
+      track.removeEventListener("mouseenter", pause);
+      track.removeEventListener("mouseleave", resume);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
 
   return (
     <section
@@ -57,7 +127,10 @@ export function BrandsCarousel() {
           aria-hidden
         />
 
-        <div className="brands-scroll flex w-max items-center gap-14 sm:gap-20 md:gap-24">
+        <div
+          ref={trackRef}
+          className="flex w-max items-center gap-14 will-change-transform sm:gap-20 md:gap-24"
+        >
           {logos.map((logo, i) => (
             <div
               key={`${logo.alt}-${i}`}

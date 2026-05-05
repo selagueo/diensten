@@ -1,33 +1,34 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 interface ContactFormProps {
   className?: string;
 }
 
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
 export function ContactForm({ className = "" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<TurnstileInstance>(null);
+  const [hcaptchaToken, setHcaptchaToken] = useState<string | null>(null);
+  const hcaptchaRef = useRef<HCaptcha>(null);
 
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-  const isDemoMode = !siteKey;
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+  const siteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!isDemoMode && !turnstileToken) {
-      setErrorMessage("Por favor, completá la verificación de seguridad.");
+    if (!accessKey) {
+      setErrorMessage("Configuración faltante. Por favor, contactanos por email.");
       return;
     }
 
-    if (isDemoMode) {
-      setStatus("success");
-      e.currentTarget.reset();
+    if (siteKey && !hcaptchaToken) {
+      setErrorMessage("Por favor, completá la verificación de seguridad.");
       return;
     }
 
@@ -37,33 +38,43 @@ export function ContactForm({ className = "" }: ContactFormProps) {
     setStatus("submitting");
 
     try {
-      const response = await fetch("/api/contact", {
+      const payload: Record<string, string> = {
+        access_key: accessKey,
+        subject: "Nuevo mensaje desde diensten.com.ar",
+        from_name: String(formData.get("name") ?? ""),
+        name: String(formData.get("name") ?? ""),
+        email: String(formData.get("email") ?? ""),
+        phone: String(formData.get("phone") ?? ""),
+        message: String(formData.get("message") ?? ""),
+      };
+      if (hcaptchaToken) {
+        payload["h-captcha-response"] = hcaptchaToken;
+      }
+
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone"),
-          message: formData.get("message"),
-          turnstileToken,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Error al enviar el mensaje");
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Error al enviar el mensaje");
       }
 
       setStatus("success");
-      setTurnstileToken(null);
+      setHcaptchaToken(null);
       form.reset();
-      turnstileRef.current?.reset();
+      hcaptchaRef.current?.resetCaptcha();
     } catch (err) {
       setStatus("error");
-      setTurnstileToken(null);
+      setHcaptchaToken(null);
       setErrorMessage(err instanceof Error ? err.message : "Error al enviar el mensaje. Intentá de nuevo.");
-      turnstileRef.current?.reset();
+      hcaptchaRef.current?.resetCaptcha();
     }
   };
 
@@ -136,16 +147,23 @@ export function ContactForm({ className = "" }: ContactFormProps) {
         />
       </div>
 
-      {!isDemoMode && (
-        <Turnstile
-          ref={turnstileRef}
-          siteKey={siteKey!}
-          onSuccess={setTurnstileToken}
-          onExpire={() => setTurnstileToken(null)}
-          options={{
-            theme: "light",
-            size: "normal",
-          }}
+      {/* Honeypot field - bots fill this, humans don't see it */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        className="hidden"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
+
+      {siteKey && (
+        <HCaptcha
+          ref={hcaptchaRef}
+          sitekey={siteKey}
+          onVerify={(token) => setHcaptchaToken(token)}
+          onExpire={() => setHcaptchaToken(null)}
+          onError={() => setHcaptchaToken(null)}
         />
       )}
 
@@ -153,7 +171,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
 
       <button
         type="submit"
-        disabled={status === "submitting" || (!isDemoMode && !turnstileToken)}
+        disabled={status === "submitting" || (!!siteKey && !hcaptchaToken)}
         className="w-full rounded-full bg-diensten-orange px-8 py-4 text-base font-bold text-white transition-colors hover:bg-diensten-orange-dark disabled:opacity-70 sm:w-auto"
       >
         {status === "submitting" ? "Enviando..." : "Enviar mensaje"}

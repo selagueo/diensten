@@ -4,11 +4,9 @@ const isGithubPages = process.env.GITHUB_PAGES === "true";
 const basePath = isGithubPages ? "/diensten" : "";
 
 const nextConfig: NextConfig = {
-  ...(isGithubPages && {
-    output: "export",
-    basePath,
-    images: { unoptimized: true },
-  }),
+  output: "export",
+  images: { unoptimized: true },
+  ...(isGithubPages && { basePath }),
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
